@@ -21,5 +21,5 @@ from books.views import default_view, book_create_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', default_view, name='default'),
-    path('books/create', book_create_view)
+    path('books/create', book_create_view, name='book_create')
 ]
