@@ -11,3 +11,7 @@ class BookForm(forms.ModelForm):
             'title',
             'description'
         ]
+        widgets = {
+            'title': forms.TextInput(attrs={'class': 'form-control'}),
+            'description': forms.Textarea(attrs={'class': 'form-control'})
+        }
