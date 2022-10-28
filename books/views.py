@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .forms import BookForm
+from .models import Book
 
 # Create your views here.
 def default_view(request, *args, **kwargs):
@@ -10,3 +11,10 @@ def book_create_view(request, *args, **kwargs):
     if form.is_valid():
         form.save()
     return render(request, 'create.html', {'form': form})
+
+def book_detail_view(request, id):
+    obj = get_object_or_404(Book, id=id)
+    context = {
+        'object': obj
+    }
+    return render(request, "detail.html", context)
