@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path
 
 from books.views import default_view, book_create_view, book_detail_view, book_delete_view
-from account.views import login_view
+from account.views import login_view, logout_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +26,5 @@ urlpatterns = [
     path('books/<int:id>', book_detail_view, name='book_detail'),
     path('books/<int:id>/delete/', book_delete_view, name='book_delete'),
     path('login/', login_view, name='login'),
+    path('logout/', logout_view, name='logout'),
 ]
