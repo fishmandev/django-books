@@ -1,10 +1,12 @@
+from wsgiref.util import request_uri
 from django.shortcuts import render, get_object_or_404
 from .forms import BookForm
 from .models import Book
 
 # Create your views here.
 def default_view(request, *args, **kwargs):
-    return render(request, 'default.html', {})
+    queryset = Book.objects.all()
+    return render(request, 'default.html', { "books": queryset })
 
 def book_create_view(request, *args, **kwargs):
     form = BookForm(request.POST or None)
