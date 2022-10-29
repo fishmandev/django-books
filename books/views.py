@@ -3,11 +3,11 @@ from .forms import BookForm
 from .models import Book
 
 # Create your views here.
-def default_view(request, *args, **kwargs):
+def default_view(request):
     queryset = Book.objects.all()
     return render(request, 'default.html', { "books": queryset })
 
-def book_create_view(request, *args, **kwargs):
+def book_create_view(request):
     form = BookForm(request.POST or None)
     if form.is_valid():
         form.save()
@@ -20,3 +20,13 @@ def book_detail_view(request, id):
         'object': obj
     }
     return render(request, "detail.html", context)
+
+def book_delete_view(request, id):
+    obj = get_object_or_404(Book, id=id)
+    if request.method == "POST":
+        obj.delete()
+        return redirect("default")
+    context = {
+        "object": obj
+    }
+    return render(request, "delete.html", context)

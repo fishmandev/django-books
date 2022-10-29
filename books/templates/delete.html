@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <h5>Do you want to delete the book "{{ object.title }}"?</h5>
+        <p>
+            <input type="submit" value="Yes" class="btn btn-danger">
+            <a class="btn btn-secondary" role="button" href="{% url 'book_detail' object.id %}">Cancel</a>
+        </p>
+    </form>
+{% endblock %}

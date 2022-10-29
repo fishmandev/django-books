@@ -16,11 +16,12 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from books.views import default_view, book_create_view, book_detail_view
+from books.views import default_view, book_create_view, book_detail_view, book_delete_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', default_view, name='default'),
     path('books/create', book_create_view, name='book_create'),
-    path('books/<int:id>', book_detail_view, name='book_detail')
+    path('books/<int:id>', book_detail_view, name='book_detail'),
+    path('books/<int:id>/delete/', book_delete_view, name='book_delete')
 ]
