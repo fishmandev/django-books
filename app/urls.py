@@ -22,8 +22,8 @@ from account.views import login_view, logout_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', default_view, name='default'),
-    path('books/create', book_create_view, name='book_create'),
-    path('books/<int:id>', book_detail_view, name='book_detail'),
+    path('books/create/', book_create_view, name='book_create'),
+    path('books/<int:id>/', book_detail_view, name='book_detail'),
     path('books/<int:id>/delete/', book_delete_view, name='book_delete'),
     path('login/', login_view, name='login'),
     path('logout/', logout_view, name='logout'),
