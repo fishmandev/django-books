@@ -9,6 +9,8 @@ def login_view(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            if "next" in request.GET:
+                return redirect(request.GET["next"])
             return redirect("default")
         else:
             messages.success(request, "Incorrect credentials, please try again.")
