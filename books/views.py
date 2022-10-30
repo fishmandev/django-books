@@ -19,8 +19,8 @@ def book_create_view(request):
     return render(request, 'create.html', {'form': form})
 
 @login_required
-def book_detail_view(request, id):
-    obj = get_object_or_404(Book, id=id)
+def book_detail_view(request, slug):
+    obj = get_object_or_404(Book, slug=slug)
     context = {
         'object': obj
     }
