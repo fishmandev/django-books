@@ -12,7 +12,9 @@ def default_view(request):
 def book_create_view(request):
     form = BookForm(request.POST or None)
     if form.is_valid():
-        form.save()
+        book = form.save(commit=False)
+        book.user = request.user
+        book.save()
         return redirect("default")
     return render(request, 'create.html', {'form': form})
 
