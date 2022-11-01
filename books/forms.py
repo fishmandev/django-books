@@ -9,7 +9,8 @@ class BookForm(forms.ModelForm):
         model = Book
         fields = [
             'title',
-            'description'
+            'description',
+            'image'
         ]
 
     def __init__(self, *args, **kwargs):

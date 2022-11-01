@@ -10,12 +10,14 @@ def default_view(request):
 
 @login_required
 def book_create_view(request):
-    form = BookForm(request.POST or None)
-    if form.is_valid():
-        book = form.save(commit=False)
-        book.user = request.user
-        book.save()
-        return redirect("default")
+    if request.method == 'POST':
+        form = BookForm(request.POST, request.FILES)
+        if form.is_valid():
+            book = form.save(commit=False)
+            book.user = request.user
+            book.save()
+            return redirect("default")
+    form = BookForm
     return render(request, 'create.html', {'form': form})
 
 @login_required
