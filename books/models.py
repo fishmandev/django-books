@@ -1,3 +1,4 @@
+from email.mime import image
 from django.db import models
 from django.conf import settings
 from django.utils.text import slugify
@@ -10,6 +11,7 @@ class Book(models.Model):
     description = models.TextField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     slug = models.SlugField(unique=True)
+    image = models.ImageField(null=True, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
