@@ -9,6 +9,11 @@ def default_view(request):
     return render(request, 'default.html', { "books": queryset })
 
 @login_required
+def book_list_view(request):
+    queryset = Book.objects.filter(user=request.user)
+    return render(request, 'list.html', { "books": queryset })
+
+@login_required
 def book_create_view(request):
     if request.method == 'POST':
         form = BookForm(request.POST, request.FILES)
